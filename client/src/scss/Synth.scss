@@ -1,0 +1,47 @@
+h3:hover {
+    color: #C3E0FA;
+    cursor: pointer;
+}
+
+.radioContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.radioToolbar {
+    width: 200px;
+    display: flex;
+    justify-content: space-evenly;
+    
+}
+
+.radioToolbar input[type="radio"] {
+    opacity: 0;
+    position: fixed;
+    width: 0;
+}
+
+.radioToolbar label {
+    display: inline-block;
+    background-color: #B3B1AF;
+    padding: 10px 20px;
+    font-family: sans-serif, Arial;
+    border: 2px solid #C3E0FA;
+    border-radius: 4px;
+    width: 10px;
+    text-align: center;
+}
+
+.radioToolbar input[type="radio"]:checked + label {
+    background-color:#FFECCE;
+    border-color: #B3B1AF;
+    color: #6D92B3;
+}
+
+.radioToolbar input[type="radio"]:focus + label {
+    border: 2px solid #B3B1AF;
+}
+
+.radioToolbar label:hover {
+    background-color: #6D92B3;
+}

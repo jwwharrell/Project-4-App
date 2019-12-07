@@ -10,10 +10,6 @@
 <br>
 
 
-<h2>ERD</h2>
-<img src="./images/p4_erd.jpg" alt="Picture of project ERD"/>
-<br>
-
 <h2>Wireframe</h2>
 <img src="./images/p4_wireframe.jpg" alt="Picture of project wireframe"/>
 <br>
@@ -23,18 +19,19 @@
 <li>HTML</li>
 <li>CSS</li>
 <li>JavaScript</li>
-<li>Django</li>
-<li>PostgreSQL</li>
-<li>Python</li>
+<li>Django*</li>
+<li>PostgreSQL*</li>
+<li>Python*</li>
 <li>Socket.IO</li>
-<li>Express</li>
+<li>Express.js</li>
 <li>Sass</li>
 <li>React.js</li>
+<li>Node.js</li>
 <li>Heroku</li>
 <li>GitHub</li>
 <li>VS Code</li>
 </ul>
-
+<p>* Removed from this version</p>
 <br>
 
 <h2>Future Edition Additions</h2>

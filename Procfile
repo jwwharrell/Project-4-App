@@ -1,1 +1,0 @@
-web: gunicorn ambient_jam.wsgi --log-file -

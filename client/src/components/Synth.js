@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import * as Tone from 'tone'
 import socketIOClient from "socket.io-client"
 import KeyBed from "./KeyBed"
-import GuestBook from "./GuestBook"
 import "../scss/Synth.scss"
 
 export default class Synth extends Component {
@@ -10,7 +9,6 @@ export default class Synth extends Component {
         synth: '',
         socket: null,
         octave: "0",
-        showGuestBook: false,
     }
 
     componentDidMount() {
@@ -118,14 +116,7 @@ export default class Synth extends Component {
         this.setState(previousState)
     }
 
-    onShowGuestClick = (e) => {
-        const previousState = { ...this.state }
-        previousState.showGuestBook = !this.state.showGuestBook
-        this.setState(previousState)
-    }
-
     render() {
-        const showGuest = this.state.showGuestBook
         return (
             <div className="App"
                 onKeyDown={this.onKeyPress}>
@@ -163,10 +154,6 @@ export default class Synth extends Component {
                     synth={this.state.synth}
                     octave={this.state.octave}
                     socket={this.state.socket} />
-                <h3
-                    onClick={this.onShowGuestClick}
-                >Show Guest Book</h3>
-                {showGuest ? <GuestBook /> : null}
             </div>
         )
     }

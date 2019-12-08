@@ -3,12 +3,7 @@ import SynthButton from './SynthButton'
 import "../scss/KeyBed.scss"
 
 export default class KeyBed extends Component {
-    cNote = () => {
-        console.log("Lo c")
-    }
-    dNote = () => {
-        console.log("D")
-    }
+    
     render() {
 
 

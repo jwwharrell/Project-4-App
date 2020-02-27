@@ -32,11 +32,12 @@ export default class Synth extends Component {
         // const socket = socketIOClient('https://guarded-falls-21789.herokuapp.com/');
         const socket = socketIOClient('localhost:4001');
         this.setState({ socket })
+        socket.emit('newUser', this.props.userName)
         
         socket.on('note', data => {
             this.state.synth.triggerAttackRelease(data.note, data.duration)
         })
-
+        
     }
 
     onKeyPress = (e) => {
@@ -92,7 +93,7 @@ export default class Synth extends Component {
 
         this.state.synth.triggerAttackRelease([newNote], "4n");
         this.state.socket.emit('note', { note: [newNote], duration: '4n' })
-        this.state.socket.emit('newUser', this.state.userName)
+        
     }
 
     onNewOctaveChange = (event) => {

@@ -9,12 +9,14 @@ export default class Synth extends Component {
         synth: '',
         socket: null,
         octave: "0",
-        userName: 'Jordan'
+        currentUsers: []        
     }
 
     componentDidMount() {
         Tone.start()
         // const fft = new Tone.FFT()
+        
+        //SYNTH
         //-------POLY-------\\
         const pingPong = new Tone.PingPongDelay("8t", "0.8").toMaster();
         const verb = new Tone.JCReverb("0.9").connect(pingPong)
@@ -29,15 +31,24 @@ export default class Synth extends Component {
         });
         this.setState({ synth })
         //-------POLY-------\\
+
+        //Socket Client
         // const socket = socketIOClient('https://guarded-falls-21789.herokuapp.com/');
         const socket = socketIOClient('localhost:4001');
-        this.setState({ socket })
         socket.emit('newUser', this.props.userName)
-        
         socket.on('note', data => {
             this.state.synth.triggerAttackRelease(data.note, data.duration)
         })
-        
+        let currentUsers = []
+        socket.on('newUser', updatedUsers => {
+            currentUsers = updatedUsers
+            console.log('Hello!')
+            console.log(currentUsers)
+            console.log(updatedUsers)
+        })
+        ///
+
+        this.setState({ socket: socket, currentUsers: currentUsers })
     }
 
     onKeyPress = (e) => {

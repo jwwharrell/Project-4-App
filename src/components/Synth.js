@@ -28,32 +28,16 @@ export default class Synth extends Component {
         });
         this.setState({ synth })
         //-------POLY-------\\
-        const socket = socketIOClient('https://guarded-falls-21789.herokuapp.com/');
+        // const socket = socketIOClient('https://guarded-falls-21789.herokuapp.com/');
+        const socket = socketIOClient('localhost:4001');
         this.setState({ socket })
-        socket.on('connect', (sock) => {
-            // console.log('on connect')
-
-        })
+        
         socket.on('note', (data) => {
-            // console.log('data', data)
             this.state.synth.triggerAttackRelease(data.note, data.duration)
         })
-        socket.on('test', (data) => {
-            // console.log('data', data)
-        })
-
-
-    }
-
-    onButtonClick = () => {
-        this.state.synth.triggerAttackRelease(["C6"], "4n");
-        this.state.socket.emit('note', { note: 'C6', duration: '4n' })
-
     }
 
     onKeyPress = (e) => {
-        // console.log("key pressed")
-        // console.log(e.keyCode)
         let newNote
         let hash
         if (this.state.octave === "-1") {
@@ -106,7 +90,6 @@ export default class Synth extends Component {
 
         this.state.synth.triggerAttackRelease([newNote], "4n");
         this.state.socket.emit('note', { note: [newNote], duration: '4n' })
-
     }
 
     onNewOctaveChange = (event) => {

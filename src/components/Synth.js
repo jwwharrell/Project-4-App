@@ -35,20 +35,20 @@ export default class Synth extends Component {
         //Socket Client
         // const socket = socketIOClient('https://guarded-falls-21789.herokuapp.com/');
         const socket = socketIOClient('localhost:4001');
+        
         socket.emit('newUser', this.props.userName)
+        socket.on('newUser', updatedUsers => {
+            const previousState = { ...this.state }
+            previousState.currentUsers = updatedUsers
+            console.log(updatedUsers)
+            this.setState(previousState)
+        })
         socket.on('note', data => {
             this.state.synth.triggerAttackRelease(data.note, data.duration)
         })
-        let currentUsers = []
-        socket.on('newUser', updatedUsers => {
-            currentUsers = updatedUsers
-            console.log('Hello!')
-            console.log(currentUsers)
-            console.log(updatedUsers)
-        })
         ///
 
-        this.setState({ socket: socket, currentUsers: currentUsers })
+        this.setState({ socket })
     }
 
     onKeyPress = (e) => {

@@ -43,8 +43,11 @@ export default class Synth extends Component {
             console.log(updatedUsers)
             this.setState(previousState)
         })
-        socket.on('note', data => {
+        socket.on('note', (data, updatedUsers) => {
             this.state.synth.triggerAttackRelease(data.note, data.duration)
+            const previousState = { ...this.state }
+            previousState.currentUsers = updatedUsers
+            this.setState(previousState)
         })
         ///
 
@@ -152,6 +155,11 @@ export default class Synth extends Component {
                     synth={this.state.synth}
                     octave={this.state.octave}
                     socket={this.state.socket} />
+                {this.state.currentUsers.map(user => {
+                    return (
+                        <p key={user.userId}>{user.userName}</p>
+                    )
+                })}
             </div>
         )
     }

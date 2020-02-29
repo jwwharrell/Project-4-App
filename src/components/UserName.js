@@ -15,7 +15,6 @@ export default class UserName extends Component {
 
     onUserNameSubmit = (e) => {
         e.preventDefault()
-        console.log(`${this.state.userName} has joined the jam!`)
         this.setState({userNameSelected: true})
     }
 
